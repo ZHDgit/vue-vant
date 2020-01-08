@@ -1,0 +1,77 @@
+.footerBotom{
+  margin-bottom: 51px;
+}
+.font-size-30{
+  font-size: 15px;
+}
+.font-size-28{
+  font-size: 14px;
+}
+.font-size-26{
+  font-size: 13px;
+}
+.font-size-24{
+  font-size: 12px;
+}
+.color999{
+  color: #999;
+}
+.ff660{
+  color: #ff6600;
+}
+.bodyBackground{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  background: #f2f2f2;
+}
+.flex-layout-lr{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-layout-r-c{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.flex-layout-c-c{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.flex-layout-l{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+html .back-box{
+  z-index: 4 !important;
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  .van-nav-bar__title{
+    font-size: 15px;
+  }
+  .van-nav-bar__arrow{
+    font-size: 21px;
+  }
+}
+.back-box-bottom{
+  margin-top: 1.1rem;
+}
+.line-item{
+  background: #fff;
+  padding: 5px 15px;
+  font-size: 14px;
+  min-height: 40px;
+}
+.padding30{
+  padding: 0 15px;
+}
