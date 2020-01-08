@@ -15,8 +15,26 @@
 ### 常用目录别名
 ![alias配置](http://img.cixi518.com/alias.png)
 ### Vant/Rem适配
-按照Vant官网推荐自动按需引入组件，同样，Vant官网中也有对Rem适配的推荐配置，按照官网说明的使用。需要注意的是postcss的配置中，autoprefixer下的`browsers`需要替换成`overrideBrowserslist`，否则会有报错信息。具体如图<br>
-![postcss配置](http://img.cixi518.com/postcss.png)
+按照Vant官网推荐自动按需引入组件，同样，Vant官网中也有对Rem适配的推荐配置，按照官网说明的使用。需要注意的是postcss的配置中，autoprefixer下的`browsers`需要替换成`overrideBrowserslist`，否则会有报错信息。<br>
+```js
+css: {
+    plugins: {
+    'autoprefixer': {
+      overrideBrowserslist: [
+        'Android 4.1',
+        'iOS 7.1',
+        'Chrome > 31',
+        'ff > 31',
+        'ie >= 8'
+      ]
+    },
+    'postcss-pxtorem': {
+      rootValue: 37.5, // 设计稿750px
+      propList: ['*']
+    }
+  }
+}
+```
 ### scss支持
 选择scss作为css预处理。
 ```js
