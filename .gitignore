@@ -13,7 +13,7 @@ help.md
  
  
 /node_modules/
-# /dist/
+/dist/
 /build/
  
 application.properties
