@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import axios from 'axios' // 引入 axios库
 import { login } from '@/api/login'
 import { setCookie } from '@/utils/cookie'
 export default {
@@ -43,6 +44,10 @@ export default {
         this.loadingStatus = false
         if (res.data.code === 200) {
           setCookie('loginToken', res.data.data.token)
+          console.log(123456)
+          axios.get('/mock/data.json').then(res => {
+            localStorage.goodsData = JSON.stringify(res.data.goodsData)
+          })
           this.$toast('登录成功')
           this.$router.push({ path: '/home' })
         } else {

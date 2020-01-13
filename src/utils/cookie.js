@@ -11,7 +11,13 @@ export function setCookie (TokenKey, token) {
     expires: expiresTime
   })
 }
-
+export function setCookieGoods (TokenKey, goodsData) {
+  var millisecond = new Date().getTime()
+  var expiresTime = new Date(millisecond + 60 * 1000 * 60 * 1)
+  return Cookies.set(TokenKey, goodsData, {
+    expires: expiresTime
+  })
+}
 export function removeCookie (TokenKey) {
   return Cookies.remove(TokenKey)
 }

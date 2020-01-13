@@ -182,6 +182,12 @@ export default {
       }
     }
   },
+  props: {
+    id:{
+      type: Number,
+      default: 0
+    }
+  },
   computed: {},
   // 监控data中的数据变化
   watch: {},
@@ -203,7 +209,8 @@ export default {
 
     },
     // 商品规格点击加入购物按钮
-    onAddCartClicked () {},
+    onAddCartClicked () {
+    },
     customStepperConfig: {
       // 自定义限购文案
       quotaText: '每次限购xxx件',
@@ -233,14 +240,23 @@ export default {
     },
     // 商品规格点击购买事件 触发onBuyClicked
     onPointClicked () {
-
-    }
+      console.log(123456)
+      // this.$store.dispatch('cart/addCart', this.id).then(() => {
+      //   this.loading = false
+      //   this.$router.push({ path: '/' })
+      // }).catch(() => {
+      //   this.loading = false
+      // })
+    },
   },
   // 生命周期 - 创建之前
   beforeCreate () {},
   // 生命周期 - 创建完成（可以访问当前this实例）
   created () {
-
+    if(this.$route.query.id !== undefined) {
+      this.goodsId = this.$route.query.id
+    }
+    console.log(this.goodsId)
   },
   // 生命周期 - 挂载之前
   beforeMount () {},

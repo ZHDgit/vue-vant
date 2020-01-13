@@ -23,7 +23,6 @@ const Axios = axios.create({
 // /* 如果不是用创建实例的方式配置，那么下面的Axios都要换成axios,也就是文件开头你用import引入axios
 // 时定义的变量*/
 Axios.interceptors.request.use((config) => {
-  console.log(process.env.VUE_APP_BASE_API)
   // 发送请求前进行拦截
   // 可在此处配置请求头信息
   config.headers['appkey'] = '...'

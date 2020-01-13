@@ -64,6 +64,7 @@
 
 <script>
 import { goodsList } from '@/api/index'
+import {setCookie, setCookieGoods} from "../../../utils/cookie";
 export default {
   components: {},
   data () {
@@ -86,22 +87,22 @@ export default {
       }, 600)
     },
     // 商品点击
-    goGoods () {
-      this.$router.push({ path: '/goods' })
+    goGoods (id) {
+      this.$router.push({ name: '商品详情', query: { id: id } })
     },
     // 获取商品列表
     getGoodsList (data) {
       goodsList(data).then(res => {
         if (res.data.code === 200) {
-          if (this.page === 1) {
-            this.goodsList = res.data.goodsList
-          } else {
-            this.goodsList.push.apply(this.goodsList, res.data.goodsList)
-          }
-          // 数据全部加载完成
-          this.finished = res.data.finished
-          // 加载状态结束
-          this.loading = false
+            if (this.page === 1) {
+              this.goodsList = res.data.goodsList
+            } else {
+              this.goodsList.push.apply(this.goodsList, res.data.goodsList)
+            }
+            // 数据全部加载完成
+            this.finished = res.data.finished
+            // 加载状态结束
+            this.loading = false
         }
       })
     }

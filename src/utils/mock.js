@@ -55,18 +55,9 @@ const goodsList = res => {
   let parameter = JSON.parse(res.body) // 请求体，用于获取参数
   let goodsList = []
   let finished = false
-  let id = 0
+  let goodsData = JSON.parse(localStorage.goodsData)
   for (let i = 0; i < parameter.size; i++) {
-    let goodsObj = {
-      id: id += 1,
-      title: Random.csentence(5, 20),
-      content: Random.csentence(30, 60),
-      peopleNum: Random.integer(1, 23),
-      // imageUrl: Random.dataImage('240*240'),
-      imageUrl: '/static/man.png',
-      price: Random.integer(123, 999)
-    }
-    goodsList.push(goodsObj)
+    goodsList.push(goodsData[i+(parameter.page-1)*parameter.size])
   }
   if (parameter.page * parameter.size > 40) {
     finished = true
