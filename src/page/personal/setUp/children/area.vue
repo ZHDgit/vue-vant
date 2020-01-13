@@ -108,16 +108,16 @@ export default {
   activated () {}
 }
 </script>
-<style>
-.van-cell{
-line-height: 80px;
-}
-.van-field__label{
-  width: 1.4rem;
-}
-.van-button {
-  height: 0.8rem;
-}
+<style scoped>
+  /deep/ .van-cell{
+  line-height: 80px;
+  }
+  /deep/ .van-field__label{
+    width: 1.4rem;
+  }
+  /deep/ .van-button {
+    height: 0.8rem;
+  }
 </style>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类

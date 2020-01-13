@@ -83,19 +83,19 @@ export default {
   activated () {}
 }
 </script>
-<style>
-.van-address-item{
-  padding: 0;
-}
-.van-radio__icon{
-  margin: 0 20px;
-}
-.van-address-item__name, .van-address-item__address{
-  line-height: 0.8rem
-}
-.van-button--large{
-  height: 0.8rem;
-}
+<style scoped>
+  /deep/ .van-address-item{
+    padding: 0;
+  }
+  /deep/ .van-radio__icon{
+    margin: 0 20px;
+  }
+  /deep/ .van-address-item__name, .van-address-item__address{
+    line-height: 0.8rem
+  }
+  /deep/ .van-button--large{
+    height: 0.8rem;
+  }
 </style>
 <style lang='scss' scoped>
 //@import url(); 引入公共css类
