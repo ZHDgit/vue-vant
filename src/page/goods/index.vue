@@ -67,6 +67,7 @@
     <van-goods-action-button color="#7232dd" type="danger" text="立即购买" class="btn" @click="buy" />
   </van-goods-action>
   <van-sku
+    ref="goodsRef"
     v-model="show"
     stepper-title="我要买"
     :sku="sku"
@@ -240,13 +241,16 @@ export default {
     },
     // 商品规格点击购买事件 触发onBuyClicked
     onPointClicked () {
-      console.log(123456)
-      // this.$store.dispatch('cart/addCart', this.id).then(() => {
-      //   this.loading = false
-      //   this.$router.push({ path: '/' })
-      // }).catch(() => {
-      //   this.loading = false
-      // })
+      let data = this.$refs.goodsRef.getSkuData()
+      if (data.selectedSkuComb !== undefined) {
+        this.$store.dispatch('cart/addCart', {id:data.goodsId, number:data.selectedNum}).then(() => {
+          // console.log(1)
+        }).catch(() => {
+          // console.log(2)
+        })
+      } else {
+        this.$toast('请先选择商品')
+      }
     },
   },
   // 生命周期 - 创建之前
@@ -256,7 +260,6 @@ export default {
     if(this.$route.query.id !== undefined) {
       this.goodsId = this.$route.query.id
     }
-    console.log(this.goodsId)
   },
   // 生命周期 - 挂载之前
   beforeMount () {},

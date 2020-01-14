@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-// import store from './store'
+import store from './store'
 import './assets/style/reset.css'
 import './assets/style/boder.css'
 import './assets/style/currency.scss'
@@ -34,7 +34,7 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
-  // store,
+  store,
   Mock,
   components: {
     App

@@ -15,7 +15,7 @@
           :price="itemData.price"
           :desc="itemData.content"
           :title="itemData.title"
-          :thumb="itemData.img"
+          :thumb="itemData.imageUrl"
           @click="checkboxFunc(itemData)"
         >
           <div slot="footer">
@@ -46,11 +46,7 @@ export default {
   data () {
     return {
       result: [],// 商品列表选中的商品id集合
-      cartData: [
-        { id: 1, title: '标题1', content: '内容', price: 30.00, number: 10, img: "https://img.yzcdn.cn/vant/t-thirt.jpg",check: false },
-        { id: 2, title: '标题2', content: '内容', price: 30.00, number: 10, img: "https://img.yzcdn.cn/vant/t-thirt.jpg", check: false },
-        { id: 3, title: '标题3', content: '内容', price: 30.00, number: 10, img: "https://img.yzcdn.cn/vant/t-thirt.jpg", check: false }
-      ],// 商品数据
+      cartData: [],// 商品数据
       checked: false // 全选反选
     }
   },
@@ -109,7 +105,11 @@ export default {
   // 生命周期 - 创建之前
   beforeCreate () {},
   // 生命周期 - 创建完成（可以访问当前this实例）
-  created () {},
+  created () {
+    if(localStorage.carts) {
+      this.cartData = JSON.parse(localStorage.carts)
+    }
+  },
 }
 </script>
 <style scoped>

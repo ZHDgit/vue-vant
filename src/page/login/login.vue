@@ -44,7 +44,6 @@ export default {
         this.loadingStatus = false
         if (res.data.code === 200) {
           setCookie('loginToken', res.data.data.token)
-          console.log(123456)
           axios.get('/mock/data.json').then(res => {
             localStorage.goodsData = JSON.stringify(res.data.goodsData)
           })
