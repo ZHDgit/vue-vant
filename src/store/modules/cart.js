@@ -18,6 +18,9 @@ const actions = {
     } else {
       commit('ADD_CART', {id, number})
     }
+  },
+  deleteCart({ commit, state }, id) {
+    commit('DELETE_CART', id)
   }
 }
 // mutations
@@ -26,12 +29,23 @@ const mutations = {
     let goodsData = JSON.parse(localStorage.carts)
     let judge = goodsData.find(n=> n.id === Number(id))
     if(!judge){
-      goodsData.push(JSON.parse(localStorage.goodsData).find(n=> n.id === id))
+      let data = JSON.parse(localStorage.goodsData).find(n=> n.id === Number(id))
+      data.number += number
+      goodsData.push(data)
     } else {
       goodsData.find(n=> n.id === Number(id)).number += number
     }
     state.carts = goodsData
     localStorage.carts = JSON.stringify(state.carts)
+  },
+  DELETE_CART(state, id) {
+    let goodsData = JSON.parse(localStorage.carts)
+    id.forEach((item,index) => {
+      if (goodsData.find(n=> n.id === Number(item))) {
+        goodsData.splice(index,1)
+      }
+    })
+    localStorage.carts = JSON.stringify(goodsData)
   }
 }
 export default {

@@ -19,8 +19,8 @@
           @click="checkboxFunc(itemData)"
         >
           <div slot="footer">
-            <van-button size="mini" @click.stop="numReduce(itemData.number,index)">-</van-button>
-            <van-button size="mini" @click.stop="numAdd(itemData.number,index)">+</van-button>
+            <van-button size="mini" @click.stop="numReduce(itemData,index)">-</van-button>
+            <van-button size="mini" @click.stop="numAdd(itemData,index)">+</van-button>
           </div>
         </van-card>
       </van-checkbox>
@@ -66,6 +66,13 @@ export default {
   methods: {
     // 删除商品
     onClickRight () {
+      if(this.result.length !== 0){
+        let that = this
+        this.$store.dispatch('cart/deleteCart', that.result).then(() => {
+          that.result = []
+          that.cartData = JSON.parse(localStorage.carts)
+        })
+      }
     },
     // 选择商品
     checkboxFunc(item,index) {
@@ -80,17 +87,23 @@ export default {
       })
     },
     // 商品数量++
-    numAdd(number,index) {
-      number++
-      this.$set(this.cartData[index], 'number', number)
+    numAdd(data,index) {
+      data.number++
+      this.$set(this.cartData[index], 'number', data.number)
+      this.$store.dispatch('cart/addCart', {id:data.id, number:1}).then(() => {
+        // console.log(1)
+      })
     },
     // 商品数量--
-    numReduce(number,index) {
-      if(number === 1){
+    numReduce(data,index) {
+      if(data.number === 1){
         this.$toast('商品数量不能少于一件！')
       } else {
-        number--
-        this.$set(this.cartData[index], 'number', number)
+        data.number--
+        this.$set(this.cartData[index], 'number', data.number)
+        this.$store.dispatch('cart/addCart', {id:data.id, number:-1}).then(() => {
+          // console.log(1)
+        })
       }
     },
     // 结算

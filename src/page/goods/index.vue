@@ -243,10 +243,12 @@ export default {
     onPointClicked () {
       let data = this.$refs.goodsRef.getSkuData()
       if (data.selectedSkuComb !== undefined) {
+        let that = this
         this.$store.dispatch('cart/addCart', {id:data.goodsId, number:data.selectedNum}).then(() => {
-          // console.log(1)
-        }).catch(() => {
-          // console.log(2)
+          this.$toast('商品已加入购物车')
+          that.show = false
+        }).catch((res) => {
+          console.log(res)
         })
       } else {
         this.$toast('请先选择商品')
