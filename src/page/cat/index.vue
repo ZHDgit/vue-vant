@@ -26,28 +26,36 @@
       </van-checkbox>
     </van-checkbox-group>
   </div>
-  <van-checkbox v-model="checked" class="checkbox-all" @change="election">
+  <van-checkbox v-if="cartData.length !== 0" v-model="checked" class="checkbox-all" @change="election">
     <span class="text">全选</span>
     <div class="price-all">
       <span>总价：{{ priceAll }}</span>
       <van-button size="mini" @click.stop="settlement()" class="btn">结算</van-button>
     </div>
   </van-checkbox>
+  <div v-else class="no-data-box" @click="goHome">
+    购物车空空的啦！快去浏览商品加入购物车
+  </div>
   <footerBar/>
+  <reminder @determine="determine" @cancel="cancel" :show="show" :title="title"/>
 </div>
 </template>
 
 <script>
 import footerBar from '@/components/footerBar'
+import reminder from '@/components/reminder'
 export default {
   components: {
-    footerBar
+    footerBar,
+    reminder
   },
   data () {
     return {
       result: [],// 商品列表选中的商品id集合
       cartData: [],// 商品数据
-      checked: false // 全选反选
+      checked: false, // 全选反选
+      show: false, // 提示框显示状态
+      title: '是否删除商品'
     }
   },
   computed: {
@@ -65,14 +73,22 @@ export default {
   watch: {},
   methods: {
     // 删除商品
-    onClickRight () {
+    onClickRight() {
+      this.show = true
+    },
+    determine() {
       if(this.result.length !== 0){
         let that = this
         this.$store.dispatch('cart/deleteCart', that.result).then(() => {
           that.result = []
           that.cartData = JSON.parse(localStorage.carts)
+          that.show = false
         })
       }
+    },
+    // 提示框点击取消事件
+    cancel () {
+      this.show = false
     },
     // 选择商品
     checkboxFunc(item,index) {
@@ -113,6 +129,10 @@ export default {
       } else {
         console.log(this.priceAll)
       }
+    },
+    // 跳转至商品页
+    goHome() {
+      this.$router.push({path: 'home'})
     }
   },
   // 生命周期 - 创建之前
@@ -172,5 +192,17 @@ export default {
         color: #fff;
       }
     }
+  }
+  .no-data-box{
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    font-size: 16px;
+    color: #990055;
+    text-align: center;
+    position: fixed;
+    bottom: 50px;
+    left: 0;
+    background: #ffecec;
   }
 </style>

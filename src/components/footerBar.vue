@@ -49,7 +49,7 @@ export default {
   align-items: center;
   align-content: center;
   background: #fff;
-  border-top: 2px solid #333;
+  border-top: 2px solid #f6f6f6;
   .tab{
     width: 25%;
     text-align: center;
